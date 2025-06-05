@@ -49,7 +49,7 @@ key = os.getenv('API_KEY')
 
 
 
-# Vérification des variables d'environnement
+# Tester les variables d'environnement
 if not url or not key:
     logging.error("URL ou API_KEY manquante dans le fichier .env")
     exit(1)
@@ -68,7 +68,7 @@ headers = {
 # Envoi de la requête au serveur API
 try:
     logging.info(f"Envoi de la requête GET au serveur {url}")
-    response = requests.get(url,headers=headers)
+    response = requests.get(url,headers=headers, timeout=(5, 10))
     response.raise_for_status()  # Lève une exception pour les codes d'erreur HTTP
 
     if response.status_code == 200:
@@ -110,15 +110,21 @@ try:
     print("Données insérées dans la base de données.")
 
 
-except requests.exceptions.HTTPError as http_err: # Erreur de type http
+
+except requests.exceptions.Timeout as timeout_err: # Err de type timeout
+    logging.error(f"Timeout lors de la connexion à l'API : {timeout_err}")
+    print("La requête a expiré (timeout). Le serveur ne répond pas assez vite.")
+
+
+except requests.exceptions.HTTPError as http_err: # Erreurs de type http
     logging.error(f"Erreur http : {http_err}")
     print(f"Erreur http : {http_err}")
 
-except requests.exceptions.RequestException as err:
+except requests.exceptions.RequestException as err: # Erreurs de connexion au serveur
     logging.error(f'Erreur de connexion : {err}')
     print(f'Erreur de connexion : {err}')
 
-except Exception as e:
+except Exception as e:                              # Erreurs innatendues
     logging.critical(f'Erreur inconnue : {e}')
     print(f'Erreur inconnue : {e}')
 
