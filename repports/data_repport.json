@@ -8,4 +8,14 @@
     "status": "DOWN",
     "response_time": 0.37,
     "timestamp": 1749119245.5783248
+}{
+    "app": "unknown",
+    "status": "DEGRADED",
+    "response_time": 0.55,
+    "timestamp": 1749123316.9712257
+}{
+    "app": "unknown",
+    "status": "OK",
+    "response_time": 1.29,
+    "timestamp": 1749125823.6368175
 }

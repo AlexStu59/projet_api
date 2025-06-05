@@ -3,8 +3,8 @@ from dotenv import load_dotenv
 import os
 import logging
 import json
-
-
+import mysql.connector
+from mysql.connector import Error
 
 # Configuration du logging
 logging.basicConfig(
@@ -13,6 +13,30 @@ logging.basicConfig(
     filename='logs/app.log',  # Fichier de log
     filemode='a'         # 'a' pour ajouter, 'w' pour écraser à chaque exécution
 )
+
+
+
+
+# Connexion à la base de données MySQL
+try:
+    connection = mysql.connector.connect(
+    host=os.getenv("DB_HOST"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    database=os.getenv("DB_NAME")
+    )
+
+    if connection.is_connected():
+        logging.info("Connexion à la base de données MySQL réussie.")
+        cursor = connection.cursor()
+        print('Connexion à la base de données MySQL réussie.')
+
+except Error as e:
+    logging.error(f"Erreur lors de la connexion à MySQL : {e}")
+    print(f"Erreur lors de la connexion à MySQL : {e}")
+    exit(1)
+
+
 
 
 
@@ -25,7 +49,7 @@ key = os.getenv('API_KEY')
 
 
 
-# Vérification des variables
+# Vérification des variables d'environnement
 if not url or not key:
     logging.error("URL ou API_KEY manquante dans le fichier .env")
     exit(1)
@@ -47,14 +71,18 @@ try:
     response = requests.get(url,headers=headers)
     response.raise_for_status()  # Lève une exception pour les codes d'erreur HTTP
 
-    response.status_code == 200
-    data = response.json()
-    logging.info("Réponse reçue avec succès")
+    if response.status_code == 200:
+        data = response.json()
+        logging.info("Succès de la réponse du serveur API")
+        print('Succès de la réponse du serveur API')
+
+
 
 
     
 # Création du dossier pour l'enregistrement des données au format json (s'il n'existe pas)
     os.makedirs("repports", exist_ok=True)
+
 
 
 
@@ -64,6 +92,7 @@ try:
 
     logging.info("Données enregistrées dans repports/data_repport.json")
     print("Données enregistrées avec succès.")
+
 
 
 except requests.exceptions.HTTPError as http_err: # Erreur de type http
@@ -77,3 +106,6 @@ except requests.exceptions.RequestException as err:
 except Exception as e:
     logging.critical(f'Erreur inconnue : {e}')
     print(f'Erreur inconnue : {e}')
+
+
+
