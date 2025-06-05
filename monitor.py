@@ -9,7 +9,7 @@ import logging
 logging.basicConfig(
     level=logging.INFO,  # Niveau de log (DEBUG, INFO, WARNING, ERROR, CRITICAL)
     format='%(asctime)s - %(levelname)s - %(message)s',
-    filename='app.log',  # Fichier de log
+    filename='logs/app.log',  # Fichier de log
     filemode='a'         # 'a' pour ajouter, 'w' pour écraser à chaque exécution
 )
 
