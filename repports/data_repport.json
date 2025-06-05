@@ -23,4 +23,9 @@
     "status": "DOWN",
     "response_time": 1.42,
     "timestamp": 1749126696.2024055
+}{
+    "app": "unknown",
+    "status": "DEGRADED",
+    "response_time": 1.31,
+    "timestamp": 1749127409.3235335
 }
