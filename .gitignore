@@ -1,5 +1,8 @@
 venv
 .env
 logs/
+logs/log
 repports/
+repports/data_repport.json
 bandit_report.html
+generate_tree.py
