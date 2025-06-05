@@ -2,6 +2,7 @@ import requests
 from dotenv import load_dotenv
 import os
 import logging
+import json
 
 
 
@@ -50,7 +51,20 @@ try:
     data = response.json()
     logging.info("Réponse reçue avec succès")
 
-    print(data)
+
+    
+# Création du dossier pour l'enregistrement des données au format json (s'il n'existe pas)
+    os.makedirs("repports", exist_ok=True)
+
+
+
+    # Enregistrement des données dans un fichier JSON
+    with open("repports/data_repport.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+
+    logging.info("Données enregistrées dans repports/data_repport.json")
+    print("Données enregistrées avec succès.")
+
 
 except requests.exceptions.HTTPError as http_err: # Erreur de type http
     logging.error(f"Erreur http : {http_err}")
