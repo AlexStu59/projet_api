@@ -6,7 +6,7 @@ import time
 
 app = FastAPI()
 
-API_TOKEN = 'MyApiKey1'
+API_TOKEN = 'CeciEstUnTokenDeTestVousPouvezLeCacherDansDotEnv'
 
 @app.middleware('http')
 async def check_token(request: Request, call_next):
