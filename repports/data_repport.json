@@ -18,4 +18,9 @@
     "status": "OK",
     "response_time": 1.29,
     "timestamp": 1749125823.6368175
+}{
+    "app": "unknown",
+    "status": "DOWN",
+    "response_time": 1.42,
+    "timestamp": 1749126696.2024055
 }

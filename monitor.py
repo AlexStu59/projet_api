@@ -93,6 +93,21 @@ try:
     logging.info("Données enregistrées dans repports/data_repport.json")
     print("Données enregistrées avec succès.")
 
+    
+    # Insertion dans la base de données
+    insert_query = """
+        INSERT INTO app_status (timestamp, app_name, status)
+        VALUES (FROM_UNIXTIME(%s), %s, %s)
+        """
+    cursor.execute(insert_query, (
+    data.get("timestamp"),
+    data.get("app", "unknown"),
+    data.get("status", "unknown")
+    ))
+    connection.commit()
+
+    logging.info("Données insérées dans la base de données.")
+    print("Données insérées dans la base de données.")
 
 
 except requests.exceptions.HTTPError as http_err: # Erreur de type http
