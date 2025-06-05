@@ -1,6 +1,11 @@
 {
     "app": "unknown",
-    "status": "OK",
-    "response_time": 1.44,
-    "timestamp": 1749118370.2509882
+    "status": "DOWN",
+    "response_time": 0.38,
+    "timestamp": 1749118712.1937313
+}{
+    "app": "unknown",
+    "status": "DOWN",
+    "response_time": 0.37,
+    "timestamp": 1749119245.5783248
 }

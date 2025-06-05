@@ -59,7 +59,7 @@ try:
 
 
     # Enregistrement des données dans un fichier JSON
-    with open("repports/data_repport.json", "w", encoding="utf-8") as f:
+    with open("repports/data_repport.json", "a", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
 
     logging.info("Données enregistrées dans repports/data_repport.json")
