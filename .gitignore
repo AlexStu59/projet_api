@@ -6,3 +6,4 @@ repports/
 repports/data_repport.json
 bandit_report.html
 generate_tree.py
+__pycache__
