@@ -1,0 +1,12 @@
+├── .env
+├── .gitignore
+├── README.md
+├── bandit_report.html
+├── fake_api.py
+├── generate_tree.py
+├── logs
+│   └── app.log
+├── monitor.py
+├── repports
+│   └── data_repport.json
+├── requirements.txt
